@@ -6,120 +6,105 @@
 <title>Happy Valentine's Day ❤️</title>
 
 <style>
-    body {
-        margin: 0;
-        font-family: Arial, Helvetica, sans-serif;
-        background: linear-gradient(135deg, #ff758c, #ff7eb3);
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-        color: white;
-        text-align: center;
-    }
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-family:Arial, Helvetica, sans-serif;
+    background:linear-gradient(135deg,#ff758c,#ff7eb3);
+    overflow:hidden;
+    text-align:center;
+    color:white;
+}
 
-    .card {
-        background: rgba(255, 255, 255, 0.15);
-        padding: 40px;
-        border-radius: 20px;
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-        position: relative;
-        z-index: 2;
-    }
+.card{
+    background:rgba(255,255,255,0.15);
+    padding:35px;
+    border-radius:20px;
+    backdrop-filter:blur(10px);
+    box-shadow:0 10px 25px rgba(0,0,0,0.2);
+    position:relative;
+    z-index:5;
+}
 
-    h1 {
-        font-size: 2.5em;
-        margin-bottom: 10px;
-    }
+button{
+    margin-top:15px;
+    padding:10px 18px;
+    border:none;
+    border-radius:10px;
+    background:white;
+    color:#ff4d6d;
+    font-weight:bold;
+    cursor:pointer;
+}
 
-    button {
-        margin-top: 20px;
-        padding: 12px 20px;
-        border: none;
-        border-radius: 10px;
-        background: white;
-        color: #ff4d6d;
-        font-weight: bold;
-        cursor: pointer;
-        transition: 0.3s;
-    }
+.hidden{
+    display:none;
+    margin-top:15px;
+    font-size:18px;
+}
 
-    button:hover {
-        transform: scale(1.1);
-    }
+/* hearts */
+.heart{
+    position:absolute;
+    bottom:-10px;
+    animation:float 5s linear infinite;
+}
+@keyframes float{
+    from{transform:translateY(0);opacity:1;}
+    to{transform:translateY(-100vh);opacity:0;}
+}
 
-    .hidden-message {
-        margin-top: 20px;
-        font-size: 1.3em;
-        display: none;
-    }
+/* bears */
+.bear{
+    position:absolute;
+    width:120px;
+    bottom:10px;
+    animation:bounce 2s infinite;
+}
+.left{ left:5%; }
+.right{ right:5%; }
 
-    /* floating hearts */
-    .heart {
-        position: absolute;
-        bottom: -10px;
-        font-size: 20px;
-        animation: float 5s linear infinite;
-        z-index: 1;
-    }
-
-    @keyframes float {
-        from { transform: translateY(0); opacity: 1; }
-        to { transform: translateY(-100vh); opacity: 0; }
-    }
-
-    /* dancing bears */
-    .bear {
-        position: absolute;
-        width: 120px;
-        animation: dance 2s ease-in-out infinite;
-        z-index: 0;
-    }
-
-    .left-bear { left: 5%; bottom: 10%; }
-    .right-bear { right: 5%; bottom: 10%; }
-
-    @keyframes dance {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-20px); }
-    }
+@keyframes bounce{
+    0%,100%{ transform:translateY(0); }
+    50%{ transform:translateY(-15px); }
+}
 </style>
 </head>
 
 <body>
 
-<!-- Bears -->
-<img class="bear left-bear" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
-<img class="bear right-bear" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
+<!-- Dancing Bears -->
+<img class="bear left" src="https://media.giphy.com/media/3oriO0OEd9QIDdllqo/giphy.gif">
+<img class="bear right" src="https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif">
 
 <div class="card">
     <h1>Happy Valentine’s Day 💖</h1>
-    <p>To my favorite person, you make my world brighter every day.</p>
+    <p>You make my life brighter every day.</p>
 
-    <button onclick="showMessage()">Click for a surprise</button>
+    <button onclick="showLove()">Click for a surprise</button>
 
-    <div class="hidden-message" id="message">
-        I love you more than words can explain ❤️
+    <div id="love" class="hidden">
+        I love you more than words can say ❤️
     </div>
 </div>
 
 <script>
-function showMessage() {
-    document.getElementById("message").style.display = "block";
+function showLove(){
+    document.getElementById("love").style.display="block";
 }
 
-// floating hearts
-setInterval(() => {
-    const heart = document.createElement("div");
-    heart.classList.add("heart");
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.innerText = "❤️";
+/* floating hearts */
+setInterval(()=>{
+    const heart=document.createElement("div");
+    heart.className="heart";
+    heart.style.left=Math.random()*100+"vw";
+    heart.innerHTML="❤️";
     document.body.appendChild(heart);
-
-    setTimeout(() => heart.remove(), 5000);
-}, 300);
+    setTimeout(()=>heart.remove(),5000);
+},300);
 </script>
 
 </body>
